@@ -1,0 +1,22 @@
+Title: Setup a minimum order $50.00 Excluding GST and Shipping in WooCommerce.
+File : /wp-content/plugins/woocommerce/includes/class-wc-checkout.php
+Function : process_checkout
+Code To Inclue : 
+		        $OrderSubTotal = WC()->cart->get_subtotal();
+			$CurrencySymbol =get_woocommerce_currency_symbol();
+			if($OrderSubTotal<50)
+			{
+			    throw new Exception( __('Your Order Amount ' .$CurrencySymbol.' '.$OrderSubTotal.' Is Less Than The Minimum Order Amount '.get_woocommerce_currency_symbol().'50.00', 'woocommerce' ) );
+			}
+
+Position : 
+
+			public function process_checkout() {
+			try {
+			$OrderSubTotal = WC()->cart->get_subtotal();
+			$CurrencySymbol =get_woocommerce_currency_symbol();
+			if($OrderSubTotal<50)
+			{
+			    throw new Exception( __('Your Order Amount ' .$CurrencySymbol.' '.$OrderSubTotal.' Is Less Than The Minimum Order Amount '.get_woocommerce_currency_symbol().'50.00', 'woocommerce' ) );
+			}
+
